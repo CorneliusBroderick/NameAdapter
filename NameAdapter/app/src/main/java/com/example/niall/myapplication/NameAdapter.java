@@ -77,6 +77,16 @@ public class NameAdapter extends RecyclerView.Adapter<NameAdapter.NameViewHolder
             mNameTextView = itemView.findViewById(R.id.name);
             mDescriptionTextView = itemView.findViewById(R.id.description);
 
+            itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    mNames.remove(getAdapterPosition());
+                    notifyItemRemoved(getAdapterPosition());
+                    notifyItemRangeChanged(0, mNames.size());
+                    return true;
+                }
+            });
+
         }
 
     }
